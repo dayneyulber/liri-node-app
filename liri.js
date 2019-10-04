@@ -51,3 +51,29 @@ function movieThis(movie) {
             console.log(error.config);
         });
 }
+
+function concertThis(artist) {
+    axios
+        .get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
+        .then(function (response) {
+            var date = moment(response.data[0].datetime).format('MM/DD/YYYY');
+            console.log(response.data[0].lineup);
+            console.log(response.data[0].venue.name);
+            console.log(response.data[0].venue.city, response.data[0].venue.country);
+            console.log(date);
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            }
+            else if (error.request) {
+                console.log(error.request);
+            }
+            else {
+                console.log("Error", error.message);
+            }
+            console.log(error.config);
+        });
+}
