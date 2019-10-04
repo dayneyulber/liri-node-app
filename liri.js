@@ -95,3 +95,22 @@ function spotifyThis(song) {
             console.log(err);
         });
 }
+
+function doThis() {
+    fs
+        .readFile("random.txt", "utf8", function (error, data) {
+
+            if (error) {
+                return console.log(error);
+            }
+
+            console.log(data);
+
+            var dataArr = data.split(",");
+
+            console.log(dataArr);
+            process.argv[2] = dataArr[0];
+            song = dataArr[1];
+            spotifyThis(song);            
+        });
+}
