@@ -77,3 +77,21 @@ function concertThis(artist) {
             console.log(error.config);
         });
 }
+
+function spotifyThis(song) {
+    if (!song) {
+        song = "The Sign";
+        console.log(song);
+    }
+    spotify
+        .search({ type: 'track', query: song })
+        .then(function (response) {
+            console.log("Artist: " + response.tracks.items[0].artists[0].name);
+            console.log("Title: " + response.tracks.items[0].name);
+            console.log("Album: " + response.tracks.items[0].album.name);
+            console.log("Preview: " + response.tracks.items[0].preview_url)
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+}
